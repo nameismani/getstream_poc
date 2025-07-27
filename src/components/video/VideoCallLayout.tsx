@@ -6,7 +6,6 @@ import {
   StreamVideo,
   StreamVideoClient,
   useCallStateHooks,
-  User,
   StreamTheme,
   SpeakerLayout,
   CallControls,
@@ -31,8 +30,20 @@ export default function VideoCallLayout({
   useEffect(() => {
     const setupCall = async () => {
       try {
+        // Create a call instance
         const newCall = client.call("default", callId);
-        await newCall.join({ create: true });
+
+        try {
+          // Try to get the call first to check if it exists
+          await newCall.get();
+
+          // If the call exists, join it
+          await newCall.join();
+        } catch (err) {
+          // If the call doesn't exist, create and join it
+          await newCall.join({ create: true });
+        }
+
         setCall(newCall);
       } catch (err: any) {
         console.error("Error joining call:", err);
@@ -46,7 +57,10 @@ export default function VideoCallLayout({
 
     return () => {
       if (call) {
-        call.leave();
+        // Leave the call when component unmounts
+        call.leave().catch((err: any) => {
+          console.error("Error leaving call:", err);
+        });
       }
     };
   }, [client, callId]);

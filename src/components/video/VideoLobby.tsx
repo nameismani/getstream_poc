@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import { useStream } from "@/contexts/StreamContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { v4 as uuidv4 } from "uuid";
+import Link from "next/link";
 
 export default function VideoLobby() {
   const [callId, setCallId] = useState("");
+  const [createdCallId, setCreatedCallId] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [isJoining, setIsJoining] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -21,7 +23,8 @@ export default function VideoLobby() {
       setIsCreating(true);
 
       // Generate a unique meeting ID
-      const newCallId = uuidv4().substring(0, 10);
+      const newCallId = uuidv4().substring(0, 12);
+      setCreatedCallId(newCallId);
 
       // Create the call
       await createCall(newCallId);
@@ -54,9 +57,20 @@ export default function VideoLobby() {
       router.push(`/video/call/${callId}`);
     } catch (err: any) {
       console.error("Error joining meeting:", err);
-      setError(err.message || "Failed to join meeting");
+      setError(
+        err.message ||
+          "Failed to join meeting. The meeting ID may be invalid or the meeting has ended."
+      );
       setIsJoining(false);
     }
+  };
+
+  const copyMeetingLink = () => {
+    if (!createdCallId) return;
+
+    const meetingLink = `${window.location.origin}/video/call/${createdCallId}`;
+    navigator.clipboard.writeText(meetingLink);
+    alert("Meeting link copied to clipboard!");
   };
 
   if (isLoading) {
@@ -103,6 +117,27 @@ export default function VideoLobby() {
       {error && (
         <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
           {error}
+        </div>
+      )}
+
+      {createdCallId && (
+        <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-md">
+          <h3 className="font-semibold text-green-800 mb-2">
+            Meeting Created!
+          </h3>
+          <p className="mb-2">
+            Meeting ID:{" "}
+            <span className="font-mono font-bold">{createdCallId}</span>
+          </p>
+          <p className="mb-3 text-sm">
+            Share this ID with others so they can join your meeting.
+          </p>
+          <button
+            onClick={copyMeetingLink}
+            className="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700"
+          >
+            Copy Meeting Link
+          </button>
         </div>
       )}
 

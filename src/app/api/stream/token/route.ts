@@ -2,32 +2,14 @@ import { NextResponse } from "next/server";
 import User from "@/models/User";
 import dbConnect from "@/lib/db";
 import crypto from "crypto";
-
-// Helper function to get the authenticated user from the session
-async function getAuthenticatedUser(request: Request) {
-  // In a real application, you would validate the session/token here
-  // For this example, we'll extract user info from a cookie or header
-
-  // Get user ID from cookies or headers
-  const userId = request.headers.get("x-user-id");
-
-  if (!userId) {
-    return null;
-  }
-
-  // Connect to database
-  await dbConnect();
-
-  // Fetch user from database
-  const user = await User.findById(userId);
-  return user;
-}
+import { cookies } from "next/headers";
 
 // Generate a Stream token for a user
 function generateStreamToken(userId: string, apiSecret: string) {
   // Create the JWT payload
   const jwtPayload = {
     user_id: userId,
+    server: false, // This is a user token, not a server token
   };
 
   // Add issued at and expiration times
@@ -76,11 +58,32 @@ function generateStreamToken(userId: string, apiSecret: string) {
 
 export async function GET(request: Request) {
   try {
-    // Get authenticated user
-    const user = await getAuthenticatedUser(request);
+    // In a real app, you would verify the session and get the user ID
+    // For this example, we'll extract the user ID from the request
+    const authHeader = request.headers.get("authorization");
+    let userId;
+
+    if (authHeader && authHeader.startsWith("Bearer ")) {
+      // Extract user ID from the token (in a real app, you would verify the token)
+      userId = authHeader.substring(7);
+    } else {
+      // Fallback to query parameter
+      const url = new URL(request.url);
+      userId = url.searchParams.get("user_id");
+    }
+
+    if (!userId) {
+      return NextResponse.json({ error: "User ID required" }, { status: 400 });
+    }
+
+    // Connect to database
+    await dbConnect();
+
+    // Find the user in the database
+    const user = await User.findById(userId);
 
     if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     // Get Stream API secret from environment variables
