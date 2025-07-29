@@ -4,7 +4,28 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+@layer base {
 
+
+  ::-webkit-scrollbar {
+    background: none;
+    scroll-behavior: smooth;
+    width: 0.3rem;
+    height: 0.2rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #4c525c;
+    border-radius: 1rem;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+   background: #434851;
+  }
+
+ 
+
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -36,3 +57,6 @@ body {
   min-width: 0;
   max-width: 100%;
 }
+
+
+
