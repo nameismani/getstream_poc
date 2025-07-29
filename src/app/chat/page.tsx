@@ -16,6 +16,7 @@ import "../../styling/SpeakerLayout-layout.scss"
 
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import { useState } from "react";
+import StreamChatMainContainer from "@/components/chat/StreamChatMainContainer";
 
 const apiKey = "mmhfdzb5evj2";
 const token =
@@ -71,7 +72,7 @@ export const MyUILayout = () => {
                         overflow-hidden
                     `}
                     >
-                        {isChatOpen && <div className='p-4 bg-[#101213]'>chat</div>}
+                        {isChatOpen && <div className='p-4 bg-[#101213]'><StreamChatMainContainer setIsChatOpen={setIsChatOpen} /></div>}
                     </div>
                 </div>
             </div>
