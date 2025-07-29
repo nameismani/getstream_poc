@@ -26,7 +26,8 @@ body {
 }
 
 .str-video {
-  background-color: #272a30;
+  background-color: #000000;
+  /* background-color: #272a30; */
   color: #ffffff;
   height: 100dvh;
   width: 100%;

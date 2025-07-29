@@ -132,7 +132,14 @@ function CallUI() {
       <div className="flex-1 relative">
         <StreamTheme>
           <SpeakerLayout participantsBarPosition="bottom" />
-          <CallControls onLeave={() => router.push("/video")} />
+          <div className="grid grid-cols-[10fr_2fr] ">
+            <div>
+              <CallControls onLeave={() => router.push("/video")} />
+            </div>
+            <div className="self-center" >
+              speaker
+            </div>
+          </div>
         </StreamTheme>
       </div>
     </div>

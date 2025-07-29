@@ -6,6 +6,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import UserProfile from "@/components/UserProfile";
 import Navbar from "@/components/Navbar";
 
+
 export default function Home() {
   const { user, loading } = useAuth();
 
