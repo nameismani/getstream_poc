@@ -2,7 +2,7 @@ import React from 'react'
 
 const StreamChatFooter = () => {
     return (
-        <div>StreamChatFooter</div>
+        <div className='rounded-l-2xl'>StreamChatFooter</div>
     )
 }
 

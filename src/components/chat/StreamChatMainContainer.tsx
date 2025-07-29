@@ -10,7 +10,7 @@ type Props = {
 const StreamChatMainContainer = ({ setIsChatOpen }: Props) => {
   return (
     <div className='flex flex-col justify-between h-full '>
-      <StreamChatHeading />
+      <StreamChatHeading setIsChatOpen={setIsChatOpen} />
       <StreamChatContent />
       <StreamChatFooter />
     </div>
