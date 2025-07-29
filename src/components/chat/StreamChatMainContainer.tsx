@@ -66,6 +66,7 @@ const StreamChatMainContainer = ({ setIsChatOpen }: Props) => {
       text: 'dsfsdfе',
       timestamp: new Date()
     }
+
   ]);
 
   const [inputMessage, setInputMessage] = useState('');

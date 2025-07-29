@@ -71,7 +71,7 @@ export const MyUILayout = () => {
                         overflow-hidden
                     `}
                     >
-                        {isChatOpen && <div className='py-4 px-6 h-full bg-[#101213] rounded-l-3xl '><StreamChatMainContainer setIsChatOpen={setIsChatOpen} /></div>}
+                        {isChatOpen && <div className='py-4  h-full bg-[#101213] rounded-l-3xl '><StreamChatMainContainer setIsChatOpen={setIsChatOpen} /></div>}
                     </div>
                 </div>
             </div>
