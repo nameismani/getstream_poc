@@ -12,6 +12,8 @@ import {
     CallControls,
     StreamVideoParticipant,
     WithTooltip,
+    CompositeButton,
+    Icon,
 } from "@stream-io/video-react-sdk";
 // import "../../styling/SpeakerLayout-layout.scss"
 import { IoMdChatboxes } from "react-icons/io";
@@ -84,15 +86,24 @@ export const MyUILayout = () => {
                 </div>
                 <div className="mr-3">
                     {/* Toggle Button */}
-                    <WithTooltip title={"Chat"}>
-                        <button
+                    <div className="str-chat__chat-button__wrapper">
+                        <WithTooltip title={"Chat"}>
+                            {/* <button
                             onClick={() => setIsChatOpen(!isChatOpen)}
                             className={`p-2 ${isChatOpen ? "bg-[#005fff]" : "bg-[#19232d]"}  rounded-full text-white cursor-pointer hover:bg-[#323b44] `}
                         >
-                            {/* {isChatOpen ? "Close Chat" : "Open Chat"} */}
+                            {isChatOpen ? "Close Chat" : "Open Chat"}
                             <IoMdChatboxes className="text-xl" />
-                        </button>
-                    </WithTooltip>
+                        </button> */}
+                            <CompositeButton
+                                active={isChatOpen}
+                                onClick={() => setIsChatOpen(!isChatOpen)}
+                            >
+                                {/* <Icon icon="chat" /> */}
+                                <IoMdChatboxes className="text-xl" />
+                            </CompositeButton>
+                        </WithTooltip>
+                    </div>
 
                 </div>
 
