@@ -11,8 +11,10 @@ import {
     SpeakerLayout,
     CallControls,
     StreamVideoParticipant,
+    WithTooltip,
 } from "@stream-io/video-react-sdk";
 // import "../../styling/SpeakerLayout-layout.scss"
+import { IoMdChatboxes } from "react-icons/io";
 
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import { useState } from "react";
@@ -80,14 +82,19 @@ export const MyUILayout = () => {
                 <div className="flex-1">
                     <CallControls />
                 </div>
-                {/* Toggle Button */}
+                <div className="mr-3">
+                    {/* Toggle Button */}
+                    <WithTooltip title={"Chat"}>
+                        <button
+                            onClick={() => setIsChatOpen(!isChatOpen)}
+                            className={`p-2 ${isChatOpen ? "bg-[#005fff]" : "bg-[#19232d]"}  rounded-full text-white cursor-pointer hover:bg-[#323b44] `}
+                        >
+                            {/* {isChatOpen ? "Close Chat" : "Open Chat"} */}
+                            <IoMdChatboxes className="text-xl" />
+                        </button>
+                    </WithTooltip>
 
-                <button
-                    onClick={() => setIsChatOpen(!isChatOpen)}
-                    className='px-4 py-0.5 bg-blue-500 text-white rounded h-fit'
-                >
-                    {isChatOpen ? "Close Chat" : "Open Chat"}
-                </button>
+                </div>
 
             </div>
 

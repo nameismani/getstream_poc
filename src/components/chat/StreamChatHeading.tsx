@@ -8,7 +8,7 @@ type Props = {
 
 const StreamChatHeading = ({ setIsChatOpen }: Props) => {
     return (
-        <div className='py-2 px-6 flex justify-between items-center'>
+        <div className='py-2 pl-6  pr-4  flex justify-between items-center'>
             Chat
             <button className='p-1 rounded-full bg-white/10 cursor-pointer' onClick={() => setIsChatOpen(false)}>
                 <IoIosClose className='text-xl' />
