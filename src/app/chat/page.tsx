@@ -12,7 +12,7 @@ import {
     CallControls,
     StreamVideoParticipant,
 } from "@stream-io/video-react-sdk";
-import "../../styling/SpeakerLayout-layout.scss"
+// import "../../styling/SpeakerLayout-layout.scss"
 
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import { useState } from "react";
