@@ -86,29 +86,24 @@ export const MyUILayout = () => {
                 </div>
                 <div className="mr-3">
                     {/* Toggle Button */}
-                    <div className="str-chat__chat-button__wrapper">
-                        <WithTooltip title={"Chat"}>
-                            {/* <button
+                    <WithTooltip title={"Chat"}>
+                        {/* <button
                             onClick={() => setIsChatOpen(!isChatOpen)}
                             className={`p-2 ${isChatOpen ? "bg-[#005fff]" : "bg-[#19232d]"}  rounded-full text-white cursor-pointer hover:bg-[#323b44] `}
                         >
                             {isChatOpen ? "Close Chat" : "Open Chat"}
                             <IoMdChatboxes className="text-xl" />
                         </button> */}
-                            <CompositeButton
-                                active={isChatOpen}
-                                onClick={() => setIsChatOpen(!isChatOpen)}
-                            >
-                                {/* <Icon icon="chat" /> */}
-                                <IoMdChatboxes className="text-xl" />
-                            </CompositeButton>
-                        </WithTooltip>
-                    </div>
-
+                        <CompositeButton
+                            active={isChatOpen}
+                            onClick={() => setIsChatOpen(!isChatOpen)}
+                        >
+                            {/* <Icon icon="chat" /> */}
+                            <IoMdChatboxes className="text-xl" />
+                        </CompositeButton>
+                    </WithTooltip>
                 </div>
-
             </div>
-
         </StreamTheme>
     );
 };

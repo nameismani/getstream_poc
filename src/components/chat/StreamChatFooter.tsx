@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { IoSend } from 'react-icons/io5'
-import { FaPaperclip } from 'react-icons/fa'
+
 
 type Props = {
     handleSendMessage: (message: string) => void;

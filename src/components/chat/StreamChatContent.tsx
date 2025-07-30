@@ -49,10 +49,12 @@ const StreamChatContent = ({ messages }: Props) => {
             </div>
 
             <div ref={messagesEndRef} />
-        </div> : <div className=' flex flex-col h-full px-6 justify-center items-center  py-2'>
-            <p className='text-white text-base mb-3'>Start chatting!</p>
-            <p className='text-sm text-gray-500 text-center'>Let’s get this chat started, why not send the first message?</p>
-        </div>
+        </div> :
+            // Empty chat 
+            <div className=' flex flex-col h-full px-6 justify-center items-center  py-2'>
+                <p className='text-white text-base mb-3 font-medium'>Start chatting!</p>
+                <p className='text-sm text-gray-500 text-center'>Let’s get this chat started, why not send the first message?</p>
+            </div>
 
     )
 }
