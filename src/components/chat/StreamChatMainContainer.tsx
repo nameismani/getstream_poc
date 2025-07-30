@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, SetStateAction, useCallback, useState } from 'react'
 import StreamChatContent from './StreamChatContent'
 import StreamChatHeading from './StreamChatHeading'
 import StreamChatFooter from './StreamChatFooter'
@@ -80,29 +80,26 @@ const StreamChatMainContainer = ({ setIsChatOpen }: Props) => {
 
   ]);
 
-  const [inputMessage, setInputMessage] = useState('');
 
-  const handleSendMessage = () => {
-    if (inputMessage.trim()) {
+
+  const handleSendMessage = useCallback(async (message: string) => {
+    if (message.trim()) {
       const newMessage = {
         id: Date.now().toString(),
-        text: inputMessage,
+        text: message,
         user_id: 1,
         timestamp: new Date()
       };
 
       setMessages([...messages, newMessage]);
-      setInputMessage('');
     }
-  };
+  }, [messages, setMessages]);
 
   return (
     <div className='flex flex-col justify-between h-full'>
       <StreamChatHeading setIsChatOpen={setIsChatOpen} />
       <StreamChatContent messages={messages} />
       <StreamChatFooter
-        inputMessage={inputMessage}
-        setInputMessage={setInputMessage}
         handleSendMessage={handleSendMessage}
       />
     </div>
