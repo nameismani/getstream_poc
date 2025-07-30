@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react'
 type Message = {
     id: string;
     text: string;
+    user_id: number;
     timestamp: Date;
 }
 
@@ -13,6 +14,7 @@ type Props = {
 const StreamChatContent = ({ messages }: Props) => {
 
     const messagesEndRef = useRef<HTMLDivElement>(null)
+    const userId = 1
     // Format timestamp for the date divider
     const formatDate = (date: Date) => {
         return `Today at ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
@@ -38,8 +40,8 @@ const StreamChatContent = ({ messages }: Props) => {
             {/* Messages */}
             <div className="flex flex-col gap-2">
                 {messages.map((message) => (
-                    <div key={message.id} className="flex justify-end">
-                        <div className="bg-gray-800 text-white px-4 py-2 rounded-full max-w-[80%]">
+                    <div key={message.id} className={`flex ${message.user_id === userId ? 'justify-end' : 'justify-start'}`}>
+                        <div className={`bg-[#272a30] text-white px-4 py-2 ${message.user_id === userId ? 'rounded-l-lg rounded-tr-lg' : 'rounded-r-lg rounded-tl-lg'} max-w-[80%]`}>
                             {message.text}
                         </div>
                     </div>

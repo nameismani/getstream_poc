@@ -67,11 +67,11 @@ export const MyUILayout = () => {
                     <div
                         className={`
                         transition-all duration-500 
-                        ${isChatOpen ? "w-[350px] opacity-100" : "w-0 opacity-0"} 
+                        ${isChatOpen ? "w-[350px] opacity-100 " : "w-0 opacity-0"} 
                         overflow-hidden
                     `}
                     >
-                        {isChatOpen && <div className='py-4  h-full bg-[#101213] rounded-l-3xl '><StreamChatMainContainer setIsChatOpen={setIsChatOpen} /></div>}
+                        {isChatOpen && <div className={`py-4  h-full bg-[#101213] rounded-l-4xl `}><StreamChatMainContainer setIsChatOpen={setIsChatOpen} /></div>}
                     </div>
                 </div>
             </div>

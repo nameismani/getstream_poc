@@ -7,6 +7,7 @@ import StreamChatFooter from './StreamChatFooter'
 type Message = {
   id: string;
   text: string;
+  user_id: number;
   timestamp: Date;
 }
 
@@ -19,51 +20,61 @@ const StreamChatMainContainer = ({ setIsChatOpen }: Props) => {
     {
       id: '1',
       text: 'fsdf',
+      user_id: 1,
       timestamp: new Date()
     },
     {
       id: '2',
       text: 'sdfsf',
+      user_id: 1,
       timestamp: new Date()
     },
     {
       id: '3',
       text: 'fsdfsfe',
+      user_id: 2,
       timestamp: new Date()
     },
     {
       id: '4',
       text: 'fsdfsdfe',
+      user_id: 2,
       timestamp: new Date()
     },
     {
       id: '5',
       text: 'dfsdfe',
+      user_id: 1,
       timestamp: new Date()
     },
     {
       id: '6',
       text: 'dfssdfe',
+      user_id: 2,
       timestamp: new Date()
     },
     {
       id: '7',
       text: 'sdfsdfе',
+      user_id: 1,
       timestamp: new Date()
     },
     {
       id: '8',
       text: 'sdfsdfе',
+      user_id: 1,
       timestamp: new Date()
     },
     {
       id: '9',
       text: 'dsfsdfе',
+      user_id: 2,
       timestamp: new Date()
     },
     {
       id: '10',
       text: 'dsfsdfе',
+      user_id: 1,
       timestamp: new Date()
     }
 
@@ -76,6 +87,7 @@ const StreamChatMainContainer = ({ setIsChatOpen }: Props) => {
       const newMessage = {
         id: Date.now().toString(),
         text: inputMessage,
+        user_id: 1,
         timestamp: new Date()
       };
 
