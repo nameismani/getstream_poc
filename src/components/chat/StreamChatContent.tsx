@@ -27,7 +27,7 @@ const StreamChatContent = ({ messages }: Props) => {
 
 
     return (
-        <div className='overflow-y-auto flex flex-col h-full px-6  py-2'>
+        messages.length > 0 ? <div className='overflow-y-auto flex flex-col h-full px-6  py-2'>
             {/* Date divider */}
             <div className="flex items-center justify-center my-4">
                 <div className="border-t border-gray-600 flex-grow"></div>
@@ -49,7 +49,11 @@ const StreamChatContent = ({ messages }: Props) => {
             </div>
 
             <div ref={messagesEndRef} />
+        </div> : <div className=' flex flex-col h-full px-6 justify-center items-center  py-2'>
+            <p className='text-white text-base mb-3'>Start chatting!</p>
+            <p className='text-sm text-gray-500 text-center'>Let’s get this chat started, why not send the first message?</p>
         </div>
+
     )
 }
 
